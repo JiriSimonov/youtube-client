@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core'
 import { RouterModule, Routes } from '@angular/router'
+import { isGuest } from './core/guards/is-guest.guard'
 import { isUser } from './core/guards/is-user.guard'
 import { NotFoundComponent } from './shared/components/not-found/not-found.component'
 
@@ -8,6 +9,7 @@ const routes: Routes = [
     path: 'auth',
     loadChildren: () =>
       import('./auth/auth.module').then((module) => module.AuthModule),
+    canMatch: [isGuest],
   },
   {
     path: 'youtube',

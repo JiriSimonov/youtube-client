@@ -1,1 +1,13 @@
-<p>sign-in works!</p>
+<div class="container">
+  <form [formGroup]="signInForm" (submit)="onSubmit(signInForm.value)">
+    <mat-form-field appearance="fill">
+      <mat-label>Введите логин</mat-label>
+      <input matInput formControlName="username" />
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+      <mat-label>Введите пароль</mat-label>
+      <input type="password" matInput formControlName="password" />
+    </mat-form-field>
+    <button mat-raised-button color="primary">Войти</button>
+  </form>
+</div>

@@ -1,17 +1,21 @@
 import { NgModule } from '@angular/core'
 import { BrowserModule } from '@angular/platform-browser'
-
 import { AppRoutingModule } from './app-routing.module'
 import { AppComponent } from './app.component'
 import { STORAGE_KEY_PREFIX } from './core/storage/tokens/storage-key.tokens'
 import { WINDOW } from './core/storage/tokens/window.token'
 import { SharedModule } from './shared/shared.module'
-
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
 const STORAGE_PREFIX = 'JIRI'
 
 @NgModule({
   declarations: [AppComponent],
-  imports: [BrowserModule, AppRoutingModule, SharedModule],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    SharedModule,
+    BrowserAnimationsModule,
+  ],
   providers: [
     {
       provide: WINDOW,
