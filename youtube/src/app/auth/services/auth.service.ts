@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core'
-import { BehaviorSubject } from 'rxjs'
+import { BehaviorSubject, map } from 'rxjs'
 import { LocalStorageService } from 'src/app/core/storage/services/local-storage/local-storage.service'
 import { UserData } from 'src/app/youtube/models/user-data'
 
@@ -12,6 +12,7 @@ export class AuthService {
     password: 'password',
   })
   public user$ = this.user$$.asObservable()
+  public username$ = this.user$.pipe(map((userData) => userData.username))
   private isUser$$ = new BehaviorSubject<boolean>(
     this.localStorageService.getItem('authData') ? true : false
   )
