@@ -1,30 +1,10 @@
-import { NgModule } from '@angular/core'
-import { RouterModule, Routes } from '@angular/router'
-import { isGuest } from './core/guards/is-guest.guard'
-import { isUser } from './core/guards/is-user.guard'
-import { NotFoundComponent } from './shared/components/not-found/not-found.component'
+import { NgModule } from '@angular/core';
+import { RouterModule, Routes } from '@angular/router';
 
-const routes: Routes = [
-  {
-    path: 'auth',
-    loadChildren: () =>
-      import('./auth/auth.module').then((module) => module.AuthModule),
-    canMatch: [isGuest],
-  },
-  {
-    path: 'youtube',
-    loadChildren: () =>
-      import('./youtube/youtube.module').then((module) => module.YoutubeModule),
-    canMatch: [isUser],
-  },
-  {
-    path: '**',
-    component: NotFoundComponent,
-  },
-]
+const routes: Routes = [];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule],
+  exports: [RouterModule]
 })
-export class AppRoutingModule {}
+export class AppRoutingModule { }
