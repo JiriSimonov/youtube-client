@@ -1,12 +1,14 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-
+import { YoutubePageComponent } from './pages/youtube-page/youtube-page.component';
 
 
 @NgModule({
-  declarations: [],
+  declarations: [
+    YoutubePageComponent
+  ],
   imports: [
-    CommonModule
+    CommonModule,
   ]
 })
 export class YoutubeModule { }
