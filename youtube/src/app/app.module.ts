@@ -4,10 +4,11 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HeaderModule } from './core/header/header.module';
 import { CoreModule } from './core/core.module';
+import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [AppComponent],
-  imports: [BrowserModule, AppRoutingModule, HeaderModule, CoreModule],
+  imports: [BrowserModule, AppRoutingModule, HeaderModule, CoreModule, NoopAnimationsModule],
   providers: [],
   bootstrap: [AppComponent],
 })
