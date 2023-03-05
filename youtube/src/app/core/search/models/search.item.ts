@@ -1,45 +1,45 @@
-export interface SearchItemModel {
+export interface SearchItem {
   kind: string;
   etag: string;
   id: string;
-  snippet: SnippetModel;
-  statistics: StatisticsModel;
+  snippet: Snippet;
+  statistics: Statistics;
 }
 
-export interface SnippetModel {
+export interface Snippet {
   publishedAt: Date;
   channelId: string;
   title: string;
   description: string;
-  thumbnails: ThumbnailsModel;
+  thumbnails: Thumbnails;
   channelTitle: string;
   tags: string[];
   categoryId: string;
   liveBroadcastContent: string;
-  localized: LocalizedModel;
+  localized: Localized;
   defaultAudioLanguage: string;
 }
 
-export interface ThumbnailsModel {
-  default: ThumbnailModel;
-  medium: ThumbnailModel;
-  high: ThumbnailModel;
-  standart: ThumbnailModel;
-  maxres: ThumbnailModel;
+export interface Thumbnails {
+  default: Thumbnail;
+  medium: Thumbnail;
+  high: Thumbnail;
+  standart: Thumbnail;
+  maxres: Thumbnail;
 }
 
-export interface ThumbnailModel {
+export interface Thumbnail {
   url: string;
   width: number;
   height: number;
 }
 
-export interface LocalizedModel {
+export interface Localized {
   title: string;
   description: string;
 }
 
-export interface StatisticsModel {
+export interface Statistics {
   viewCount: string;
   likeCount: string;
   dislikeCount: string;

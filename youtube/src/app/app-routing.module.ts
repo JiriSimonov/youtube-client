@@ -1,19 +1,19 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { HomePageComponent } from './modules/home/pages/home-page/home-page.component';
 
 const routes: Routes = [
   {
     path: '',
-    pathMatch: 'full',
-    redirectTo: 'youtube',
+    component: HomePageComponent,
   },
   {
     path: 'youtube',
-    loadChildren: () => import('./youtube/youtube.module').then((m) => m.YoutubeModule),
+    loadChildren: () => import('./modules/youtube/youtube.module').then((m) => m.YoutubeModule),
   },
   {
     path: 'auth',
-    loadChildren: () => import('./auth/auth.module').then((m) => m.AuthModule),
+    loadChildren: () => import('./modules/auth/auth.module').then((m) => m.AuthModule),
   },
 ];
 
