@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { HomePageComponent } from './modules/home/pages/home-page/home-page.component';
+import { HomePageComponent } from './home/pages/home-page/home-page.component';
 
 const routes: Routes = [
   {
@@ -9,11 +9,11 @@ const routes: Routes = [
   },
   {
     path: 'youtube',
-    loadChildren: () => import('./modules/youtube/youtube.module').then((m) => m.YoutubeModule),
+    loadChildren: () => import('./youtube/youtube.module').then((m) => m.YoutubeModule),
   },
   {
     path: 'auth',
-    loadChildren: () => import('./modules/auth/auth.module').then((m) => m.AuthModule),
+    loadChildren: () => import('./auth/auth.module').then((m) => m.AuthModule),
   },
 ];
 
