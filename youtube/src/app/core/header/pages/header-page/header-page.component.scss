@@ -1,0 +1,16 @@
+.header {
+  padding: 20px;
+
+  &__container {
+    display: grid;
+    grid-template-columns: 20% 60% 20%;
+    grid-template-rows: repeat(2, 1fr);
+  }
+
+  &__controls {
+    grid-column: 2/3;
+    display: flex;
+    justify-content: space-between;
+  }
+}
+

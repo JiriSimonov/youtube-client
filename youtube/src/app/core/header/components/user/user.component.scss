@@ -1,0 +1,10 @@
+:host {
+  grid-column: 3/4;
+  margin-left: auto;
+}
+
+.user {
+  display: flex;
+  gap: 15px;
+  align-items: flex-start;
+}
