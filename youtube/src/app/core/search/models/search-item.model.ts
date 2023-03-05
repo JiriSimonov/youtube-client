@@ -1,4 +1,4 @@
-export interface SearchItem {
+export interface SearchItemModel {
   kind: string;
   etag: string;
   id: string;
