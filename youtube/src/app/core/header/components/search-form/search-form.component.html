@@ -1,1 +1,7 @@
-<p>search-form works!</p>
+<form [formGroup]="searchForm" (ngSubmit)="onSubmit()">
+  <mat-form-field>
+    <input matInput formControlName="search" />
+    <mat-error>field is required</mat-error>
+  </mat-form-field>
+  <button mat-raised-button color="primary" type="submit" [disabled]="searchForm.invalid">search</button>
+</form>
