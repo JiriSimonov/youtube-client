@@ -1,0 +1,13 @@
+<mat-card>
+  <img src="{{ maxres.url }}" alt="{{ snippet.title }}" />
+  <mat-card-title>{{ snippet.title }}</mat-card-title>
+  <ul>
+    <li *ngFor="let stat of statistics">
+      <mat-icon>{{ stat.icon }}</mat-icon>
+      <span>{{ stat.count | number : '1.0-0' }}</span>
+    </li>
+  </ul>
+  <mat-card-actions>
+    <button mat-raised-button color="primary">more..</button>
+  </mat-card-actions>
+</mat-card>

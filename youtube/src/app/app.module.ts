@@ -5,10 +5,11 @@ import { AppComponent } from './app.component';
 import { HeaderModule } from './core/header/header.module';
 import { CoreModule } from './core/core.module';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [AppComponent],
-  imports: [BrowserModule, AppRoutingModule, HeaderModule, CoreModule, NoopAnimationsModule],
+  imports: [BrowserModule, AppRoutingModule, HeaderModule, CoreModule, NoopAnimationsModule, HttpClientModule],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
