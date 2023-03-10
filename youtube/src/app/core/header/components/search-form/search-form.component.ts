@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { throttleTime } from 'rxjs';
+import { debounceTime, map, startWith, switchMap, throttleTime } from 'rxjs';
+import { VideosService } from '../../../services/videos.service';
 
 @Component({
   selector: 'app-search-form',
@@ -8,12 +9,24 @@ import { throttleTime } from 'rxjs';
   styleUrls: ['./search-form.component.scss'],
 })
 export class SearchFormComponent implements OnInit {
-  public searchForm!: FormGroup;
+  public searchForm!: FormGroup<{ search: FormControl<string | null> }>;
+  constructor(private videosService: VideosService) {}
+
+  get searchControl() {
+    return this.searchForm.controls.search;
+  }
+
   ngOnInit(): void {
     this.searchForm = new FormGroup({
-      search: new FormControl('', [Validators.required]),
+      search: new FormControl<string>('', [Validators.required]),
     });
-    this.searchForm.valueChanges.pipe(throttleTime(800)).subscribe();
+    this.searchControl.valueChanges
+      .pipe(
+        startWith(''),
+        debounceTime(800),
+        switchMap(() => this.videosService.getVideos()),
+      )
+      .subscribe();
   }
   onSubmit() {
     console.log(this.searchForm.value);

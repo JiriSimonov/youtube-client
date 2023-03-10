@@ -1,13 +1,13 @@
-<mat-card>
+<mat-card class="video__card">
   <img src="{{ maxres.url }}" alt="{{ snippet.title }}" />
-  <mat-card-title>{{ snippet.title }}</mat-card-title>
-  <ul>
-    <li *ngFor="let stat of statistics">
+  <ul class="video__stats">
+    <li *ngFor="let stat of statistics" class="video__stat">
       <mat-icon>{{ stat.icon }}</mat-icon>
       <span>{{ stat.count | number : '1.0-0' }}</span>
     </li>
   </ul>
-  <mat-card-actions>
+  <mat-card-title class="video__title">{{ snippet.title }}</mat-card-title>
+  <mat-card-actions class="video__actions">
     <button mat-raised-button color="primary">more..</button>
   </mat-card-actions>
 </mat-card>

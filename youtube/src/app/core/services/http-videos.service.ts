@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { SearchResponse } from '../../../core/header/models/search.response';
+import { SearchResponse } from '../header/models/search.response';
 
 @Injectable({
   providedIn: 'root',
