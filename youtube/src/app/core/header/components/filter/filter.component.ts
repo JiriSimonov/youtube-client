@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
-import { VideosService } from '../../../services/videos.service';
+import { SorterService } from 'src/app/core/services/sorter.service';
+import { VideosService } from 'src/app/core/services/videos.service';
 
 @Component({
   selector: 'app-filter',
@@ -9,18 +10,18 @@ import { VideosService } from '../../../services/videos.service';
 })
 export class FilterComponent implements OnInit {
   public filterForm!: FormGroup<{ filter: FormControl<string | null> }>;
-  constructor(private videosService: VideosService) {}
+  constructor(private videosService: VideosService, private sorterService: SorterService) {}
 
   get searchControl() {
     return this.filterForm.controls.filter;
   }
 
   sortByViews() {
-    this.videosService.sortByViews();
+    this.sorterService.sortByViews();
   }
 
   sortByDate() {
-    this.videosService.sortByDate();
+    this.sorterService.sortByDate();
   }
 
   ngOnInit(): void {
