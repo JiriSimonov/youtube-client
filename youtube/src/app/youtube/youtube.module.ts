@@ -1,20 +1,15 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { YoutubePageComponent } from './pages/youtube-page/youtube-page.component';
-import { RouterModule, Routes } from '@angular/router';
 import { VideosComponent } from './components/videos/videos.component';
 import { VideoComponent } from './components/video/video.component';
 import { MaterialModule } from '../core/material/material.module';
 import { BackgroundImageDirective } from './directives/background-image.directive';
-import { ElementSizeDirective } from './directives/element-size.directive';
 import { MatCardModule } from '@angular/material/card';
-
-const routes: Routes = [
-  {
-    path: '',
-    component: YoutubePageComponent,
-  },
-];
+import { YoutubeVideoPageComponent } from './pages/youtube-video-page/youtube-video-page.component';
+import { YoutubeRoutingModule } from './youtube-routing.module';
+import { VideoDetailsComponent } from './components/video-details/video-details.component';
+import { BorderColorDirective } from './directives/border-color.directive';
 
 @NgModule({
   declarations: [
@@ -22,9 +17,10 @@ const routes: Routes = [
     VideosComponent,
     VideoComponent,
     BackgroundImageDirective,
-    BackgroundImageDirective,
-    ElementSizeDirective,
+    YoutubeVideoPageComponent,
+    VideoDetailsComponent,
+    BorderColorDirective,
   ],
-  imports: [CommonModule, RouterModule.forChild(routes), MaterialModule, MatCardModule],
+  imports: [CommonModule, MaterialModule, MatCardModule, YoutubeRoutingModule],
 })
 export class YoutubeModule {}
