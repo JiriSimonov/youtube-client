@@ -10,6 +10,8 @@ import { VideosService } from 'src/app/core/services/videos.service';
 })
 export class FilterComponent implements OnInit {
   public filterForm!: FormGroup<{ filter: FormControl<string | null> }>;
+  private sortByViewsDirection = 1;
+  private sortByDateDirection = 1;
   constructor(private videosService: VideosService, private sorterService: SorterService) {}
 
   get searchControl() {
@@ -17,11 +19,13 @@ export class FilterComponent implements OnInit {
   }
 
   sortByViews() {
-    this.sorterService.sortByViews();
+    this.sorterService.sortBy('views', this.sortByViewsDirection);
+    this.sortByViewsDirection = this.sortByViewsDirection * -1;
   }
 
   sortByDate() {
-    this.sorterService.sortByDate();
+    this.sorterService.sortBy('date', this.sortByDateDirection);
+    this.sortByDateDirection = this.sortByDateDirection * -1;
   }
 
   ngOnInit(): void {

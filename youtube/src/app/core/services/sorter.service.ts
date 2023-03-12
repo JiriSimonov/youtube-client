@@ -1,42 +1,23 @@
 import { Injectable } from '@angular/core';
+import { SearchItem, Statistics } from '../header/models/search.item';
 import { VideosService } from './videos.service';
+
+type SortCriteria = 'views' | 'date';
 
 @Injectable({
   providedIn: 'root',
 })
 export class SorterService {
-  private sortByViewsDirection = false;
-  private sortByDateDirection = false;
+  private sortMap: Record<SortCriteria, (a: SearchItem, b: SearchItem) => number>;
 
-  constructor(private videosService: VideosService) {}
-
-  convertToValidDate(date: Date) {
-    return new Date(date);
+  constructor(private videosService: VideosService) {
+    this.sortMap = {
+      views: (a, b) => +b.statistics.viewCount - a.statistics.viewCount,
+      date: (a, b) => new Date(b.snippet.publishedAt) - new Date(a.snippet.publishedAt),
+    };
   }
 
-  sortByViews() {
-    this.sortByViewsDirection
-      ? this.videosService.changeVideos(
-          this.videosService.videos.sort((a, b) => +b.statistics.viewCount - +a.statistics.viewCount),
-        )
-      : this.videosService.changeVideos(
-          this.videosService.videos.sort((a, b) => +a.statistics.viewCount - +b.statistics.viewCount),
-        );
-    this.sortByViewsDirection = !this.sortByViewsDirection;
-  }
-
-  sortByDate() {
-    this.sortByDateDirection
-      ? this.videosService.changeVideos(
-          this.videosService.videos.sort(
-            (a, b) => +this.convertToValidDate(b.snippet.publishedAt) - +this.convertToValidDate(a.snippet.publishedAt),
-          ),
-        )
-      : this.videosService.changeVideos(
-          this.videosService.videos.sort(
-            (a, b) => +this.convertToValidDate(a.snippet.publishedAt) - +this.convertToValidDate(b.snippet.publishedAt),
-          ),
-        );
-    this.sortByDateDirection = !this.sortByDateDirection;
+  sortBy(criteria: SortCriteria, direction: number) {
+    this.videosService.changeVideos(this.videosService.videos.sort((a, b) => this.sortMap[criteria](a, b) * direction));
   }
 }

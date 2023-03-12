@@ -13,7 +13,7 @@ export class VideosComponent {
 
   constructor(private videosService: VideosService) {}
 
-  trackBy(id: number, video: SearchItem) {
+  trackBy(_: number, video: SearchItem) {
     return video.id;
   }
 }

@@ -10,13 +10,24 @@ import { SearchItem } from '../header/models/search.item';
 export class VideosService {
   private videos$$ = new BehaviorSubject<SearchItem[]>([]);
   private filterValue$$ = new BehaviorSubject('');
+  private initialVideosList: SearchItem[] = [];
   public videos$ = combineLatest([this.videos$$, this.filterValue$$]).pipe(
     map(([arr, str]) => arr.filter((item) => item.snippet.title.toLowerCase().includes(str.toLowerCase()))),
   );
   constructor(private httpVideosService: HttpVideosService) {}
 
   getVideos() {
-    return this.httpVideosService.getVideos().pipe(tap((videos) => this.videos$$.next(videos.items)));
+    return this.httpVideosService.getVideos().pipe(
+      tap((videos) => {
+        this.videos$$.next(videos.items);
+        this.initialVideosList = videos.items;
+      }),
+    );
+  }
+
+  resetVideosList() {
+    this.videos$$.next(this.initialVideosList);
+    this.filterValue$$.next('');
   }
 
   get videos() {
