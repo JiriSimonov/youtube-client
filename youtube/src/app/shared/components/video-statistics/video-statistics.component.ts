@@ -13,7 +13,9 @@ import { MaterialModule } from 'src/app/core/material/material.module';
 })
 export class VideoStatisticsComponent implements OnInit {
   @Input('app-video-statistics') statistics!: Statistics;
+
   public stats: StatisticsItemModel[] = [];
+
   private icons = ['visibility', 'thumb_up', 'thumb_down', 'favorite', 'speaker_notes'];
 
   ngOnInit(): void {

@@ -11,6 +11,7 @@ import { SortCriteria } from 'src/app/youtube/pipes/sort.pipe';
 })
 export class FilterComponent implements OnInit {
   public filterForm!: FormGroup<{ filter: FormControl<string | null> }>;
+
   constructor(private videosService: VideosService, private sorterService: SorterService) {}
 
   get searchControl() {

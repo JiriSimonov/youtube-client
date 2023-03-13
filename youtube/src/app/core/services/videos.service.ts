@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
-import { HttpVideosService } from './http-videos.service';
 import { BehaviorSubject, combineLatest } from 'rxjs';
 import { tap, map } from 'rxjs/operators';
+import { HttpVideosService } from './http-videos.service';
 import { SearchItem } from '../header/models/search.item';
 
 @Injectable({
@@ -9,11 +9,15 @@ import { SearchItem } from '../header/models/search.item';
 })
 export class VideosService {
   private videos$$ = new BehaviorSubject<SearchItem[]>([]);
+
   private filterValue$$ = new BehaviorSubject('');
+
   private initialVideosList: SearchItem[] = [];
+
   public videos$ = combineLatest([this.videos$$, this.filterValue$$]).pipe(
     map(([arr, str]) => arr.filter((item) => item.snippet.title.toLowerCase().includes(str.toLowerCase()))),
   );
+
   constructor(private httpVideosService: HttpVideosService) {}
 
   getVideos() {

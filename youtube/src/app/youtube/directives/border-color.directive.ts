@@ -22,6 +22,7 @@ const getBorderColor = (currentDate: number, validDate: number): string => {
 })
 export class BorderColorDirective implements OnChanges {
   @Input('appBorderColor') date!: Date | null;
+
   constructor(private element: ElementRef<HTMLElement>, private renderer: Renderer2) {}
 
   ngOnChanges(): void {

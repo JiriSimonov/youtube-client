@@ -7,11 +7,13 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
 })
 export class SortButtonComponent {
   @Input() name = '';
+
   @Output() sort = new EventEmitter<number>();
+
   public direction = 1;
 
   changeDirection() {
-    this.direction = this.direction * -1;
+    this.direction *= -1;
     this.sort.emit(this.direction);
   }
 }

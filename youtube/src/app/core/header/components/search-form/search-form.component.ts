@@ -10,6 +10,7 @@ import { VideosService } from '../../../services/videos.service';
 })
 export class SearchFormComponent implements OnInit {
   public searchForm!: FormGroup<{ search: FormControl<string | null> }>;
+
   constructor(private videosService: VideosService) {}
 
   get searchControl() {
@@ -28,6 +29,7 @@ export class SearchFormComponent implements OnInit {
       )
       .subscribe();
   }
+
   onSubmit() {
     console.log(this.searchForm.value);
   }

@@ -7,6 +7,7 @@ import { SearchResponse } from '../header/models/search.response';
 })
 export class HttpVideosService {
   constructor(private http: HttpClient) {}
+
   getVideos() {
     return this.http.get<SearchResponse>('assets/data.json');
   }

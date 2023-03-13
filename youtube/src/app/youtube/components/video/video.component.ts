@@ -8,8 +8,11 @@ import { SearchItem, Snippet, Statistics, Thumbnail } from '../../../core/header
 })
 export class VideoComponent implements OnInit {
   @Input() video!: SearchItem;
+
   public snippet!: Snippet;
+
   public maxres!: Thumbnail;
+
   public statistics!: Statistics;
 
   ngOnInit(): void {
