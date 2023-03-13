@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { CommonModule, NgOptimizedImage } from '@angular/common';
 import { YoutubePageComponent } from './pages/youtube-page/youtube-page.component';
 import { VideosComponent } from './components/videos/videos.component';
 import { VideoComponent } from './components/video/video.component';
@@ -10,6 +10,8 @@ import { YoutubeVideoPageComponent } from './pages/youtube-video-page/youtube-vi
 import { YoutubeRoutingModule } from './youtube-routing.module';
 import { VideoDetailsComponent } from './components/video-details/video-details.component';
 import { BorderColorDirective } from './directives/border-color.directive';
+import { VideoStatisticsComponent } from '../shared/components/video-statistics/video-statistics.component';
+import { SortPipe } from './pipes/sort.pipe';
 
 @NgModule({
   declarations: [
@@ -20,7 +22,15 @@ import { BorderColorDirective } from './directives/border-color.directive';
     YoutubeVideoPageComponent,
     VideoDetailsComponent,
     BorderColorDirective,
+    SortPipe,
   ],
-  imports: [CommonModule, MaterialModule, MatCardModule, YoutubeRoutingModule],
+  imports: [
+    CommonModule,
+    MaterialModule,
+    MatCardModule,
+    YoutubeRoutingModule,
+    VideoStatisticsComponent,
+    NgOptimizedImage,
+  ],
 })
 export class YoutubeModule {}

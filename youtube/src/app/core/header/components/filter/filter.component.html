@@ -1,7 +1,7 @@
 <div class="filter">
   <span>Sorting by:</span>
-  <button (click)="sortByDate()">date</button>
-  <button (click)="sortByViews()">count if views</button>
+  <app-sort-button name="date" (sort)="sortByCriteria('date', $event)"></app-sort-button>
+  <app-sort-button name="views" (sort)="sortByCriteria('views', $event)"></app-sort-button>
   <form [formGroup]="filterForm">
     <label>
       by word or sentence

@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component, OnDestroy, OnInit, ChangeDetectorRef } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { map, Subscription, switchMap, tap } from 'rxjs';
-import { SearchItem, Snippet } from 'src/app/core/header/models/search.item';
+import { SearchItem, Snippet, Statistics, Thumbnail } from 'src/app/core/header/models/search.item';
 import { VideosService } from 'src/app/core/services/videos.service';
 
 @Component({
@@ -13,6 +13,8 @@ import { VideosService } from 'src/app/core/services/videos.service';
 export class VideoDetailsComponent implements OnInit, OnDestroy {
   public video!: SearchItem | undefined;
   public snippet!: Snippet | undefined;
+  public statistics!: Statistics | undefined;
+  public maxres!: Thumbnail | undefined;
   private sub = new Subscription();
 
   constructor(private route: ActivatedRoute, private videosService: VideosService, private cdr: ChangeDetectorRef) {}
@@ -27,6 +29,8 @@ export class VideoDetailsComponent implements OnInit, OnDestroy {
               tap((res) => {
                 this.video = res.items.find((video) => video.id === videoIdFromRoute);
                 this.snippet = this.video?.snippet;
+                this.statistics = this.video?.statistics;
+                this.maxres = this.snippet?.thumbnails.maxres;
                 this.cdr.detectChanges();
               }),
             ),

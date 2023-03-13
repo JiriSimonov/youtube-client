@@ -1,6 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { SearchItem, Snippet, Thumbnail } from '../../../core/header/models/search.item';
-import { StatisticsItemModel } from '../../models/statistics-item.model';
+import { SearchItem, Snippet, Statistics, Thumbnail } from '../../../core/header/models/search.item';
 
 @Component({
   selector: 'app-video',
@@ -11,15 +10,11 @@ export class VideoComponent implements OnInit {
   @Input() video!: SearchItem;
   public snippet!: Snippet;
   public maxres!: Thumbnail;
-  public statistics: StatisticsItemModel[] = [];
+  public statistics!: Statistics;
 
   ngOnInit(): void {
     this.snippet = this.video.snippet;
     this.maxres = this.snippet.thumbnails.medium;
-    const statisticsArr = Object.values(this.video.statistics);
-    const icons = ['visibility', 'thumb_up', 'thumb_down', 'favorite', 'speaker_notes'];
-    icons.forEach((icon, index) => {
-      this.statistics.push({ icon, count: statisticsArr[index] });
-    });
+    this.statistics = this.video.statistics;
   }
 }
