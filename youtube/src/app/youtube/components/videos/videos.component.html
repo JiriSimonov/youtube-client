@@ -1,0 +1,5 @@
+<ul class="videos__list">
+  <app-video
+    *ngFor="let video of videos | sort : (sort ? [sort.criteria, sort.direction] : []); trackBy: trackBy"
+    [video]="video"></app-video>
+</ul>

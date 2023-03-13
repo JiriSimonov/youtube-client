@@ -1,0 +1,35 @@
+import { Directive, ElementRef, Input, OnChanges, Renderer2, SimpleChanges } from '@angular/core';
+
+@Directive({
+  selector: '[appBorderColor]',
+})
+export class BorderColorDirective implements OnChanges {
+  @Input('appBorderColor') date!: Date | null;
+  constructor(private element: ElementRef<HTMLElement>, private renderer: Renderer2) {}
+
+  ngOnChanges(): void {
+    if (this.date) {
+      const validDate = new Date(this.date).getTime();
+      const currentDate = Date.now();
+
+      const getBorderColor = (currentDate: number, validDate: number): string => {
+        const dateDifference = currentDate - validDate;
+        const oneWeek = 604800000;
+        const oneMonth = 2628002880;
+        const halfYear = 15768017280;
+        if (dateDifference <= oneWeek) return 'blue';
+        if (dateDifference < oneMonth) return 'green';
+        if (dateDifference < halfYear) return 'yellow';
+        return 'red';
+      };
+      const pattern: Record<string, () => void> = {
+        yellow: () => this.renderer.setStyle(this.element.nativeElement, 'border-color', 'yellow'),
+        red: () => this.renderer.setStyle(this.element.nativeElement, 'border-color', 'red'),
+        green: () => this.renderer.setStyle(this.element.nativeElement, 'border-color', 'green'),
+        blue: () => this.renderer.setStyle(this.element.nativeElement, 'border-color', 'blue'),
+      };
+      const color = getBorderColor(currentDate, validDate);
+      pattern[color]();
+    }
+  }
+}

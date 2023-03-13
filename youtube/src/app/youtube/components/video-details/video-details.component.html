@@ -1,0 +1,25 @@
+<div class="card" *ngIf="snippet">
+  <button mat-raised-button color="primary" routerLink="/youtube">
+    <mat-icon>navigate_before</mat-icon>
+  </button>
+  <div class="card__wrapper" *ngIf="maxres">
+    <img
+      mat-card-image
+      class="video__image"
+      ngSrc="{{ maxres.url }}"
+      width="{{ maxres.width }}"
+      height="{{ maxres.height }}"
+      alt="{{ this.snippet.title }}" />
+    <mat-card class="card__container" [appBorderColor]="snippet.publishedAt">
+      <mat-card-header class="card__header">
+        <mat-card-title>{{ snippet.title }}</mat-card-title>
+        <div class="card__date">{{ snippet.publishedAt | date }}</div>
+      </mat-card-header>
+      <mat-card-content *ngIf="statistics">
+        <mat-card-subtitle>Description:</mat-card-subtitle>
+        <p>{{ snippet.description }}</p>
+        <app-video-statistics [app-video-statistics]="statistics"> </app-video-statistics>
+      </mat-card-content>
+    </mat-card>
+  </div>
+</div>

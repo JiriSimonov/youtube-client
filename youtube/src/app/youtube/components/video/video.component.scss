@@ -1,0 +1,19 @@
+:host {
+  border-radius: 13px;
+  text-align: center;
+}
+
+.video__card {
+  padding: 20px;
+  border-bottom: 4px solid transparent;
+}
+
+.video__title {
+  margin: 20px auto;
+}
+
+.video__actions {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

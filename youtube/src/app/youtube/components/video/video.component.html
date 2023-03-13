@@ -1,0 +1,8 @@
+<mat-card class="video__card" [appBorderColor]="snippet.publishedAt">
+  <img src="{{ maxres.url }}" alt="{{ snippet.title }}" />
+  <app-video-statistics [app-video-statistics]="statistics"></app-video-statistics>
+  <mat-card-title class="video__title">{{ snippet.title }}</mat-card-title>
+  <mat-card-actions class="video__actions">
+    <button mat-raised-button color="primary" routerLink="{{ video.id }}">more..</button>
+  </mat-card-actions>
+</mat-card>
