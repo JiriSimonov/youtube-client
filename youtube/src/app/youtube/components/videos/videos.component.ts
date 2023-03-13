@@ -12,7 +12,7 @@ import { VideosService } from '../../../core/services/videos.service';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class VideosComponent implements OnInit, OnDestroy {
-  public sort: SortOptions | null = null;
+  public sortOptions: SortOptions | null = null;
 
   public videos: SearchItem[] = [];
 
@@ -29,7 +29,7 @@ export class VideosComponent implements OnInit, OnDestroy {
       combineLatest([this.sortService.sort$, this.videosService.videos$])
         .pipe(
           tap(([sort, videos]) => {
-            this.sort = sort;
+            this.sortOptions = sort;
             this.videos = videos;
             this.cdr.detectChanges();
           }),
