@@ -1,9 +1,9 @@
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnDestroy, OnInit } from '@angular/core';
-import { VideosService } from '../../../core/services/videos.service';
-import { SearchItem } from '../../../core/header/models/search.item';
 import { SorterService } from 'src/app/core/services/sorter.service';
 import { combineLatest, Subscription, tap } from 'rxjs';
-import { SortCriteria } from '../../pipes/sort.pipe';
+import { SortOptions } from 'src/app/shared/models/sort-options.model';
+import { SearchItem } from '../../../core/header/models/search.item';
+import { VideosService } from '../../../core/services/videos.service';
 
 @Component({
   selector: 'app-videos',
@@ -12,15 +12,19 @@ import { SortCriteria } from '../../pipes/sort.pipe';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class VideosComponent implements OnInit, OnDestroy {
-  private subs = new Subscription();
-  public sort: { direction: number; criteria: SortCriteria } | null = null;
+  public sort: SortOptions | null = null;
+
   public videos: SearchItem[] = [];
+
+  private subs = new Subscription();
+
   constructor(
     private videosService: VideosService,
     private sortService: SorterService,
     private cdr: ChangeDetectorRef,
   ) {}
-  ngOnInit(): void {
+
+  public ngOnInit(): void {
     this.subs.add(
       combineLatest([this.sortService.sort$, this.videosService.videos$])
         .pipe(
@@ -34,10 +38,11 @@ export class VideosComponent implements OnInit, OnDestroy {
     );
   }
 
-  ngOnDestroy(): void {
-    this.subs.unsubscribe();
-  }
-  trackBy(_: number, video: SearchItem) {
+  public trackBy(_: number, video: SearchItem): string {
     return video.id;
+  }
+
+  public ngOnDestroy(): void {
+    this.subs.unsubscribe();
   }
 }

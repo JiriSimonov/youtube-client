@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
 import { SearchResponse } from '../header/models/search.response';
 
 @Injectable({
@@ -7,7 +8,8 @@ import { SearchResponse } from '../header/models/search.response';
 })
 export class HttpVideosService {
   constructor(private http: HttpClient) {}
-  getVideos() {
+
+  public getVideos(): Observable<SearchResponse> {
     return this.http.get<SearchResponse>('assets/data.json');
   }
 }

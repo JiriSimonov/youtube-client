@@ -7,12 +7,15 @@ import { SearchItem, Snippet, Statistics, Thumbnail } from '../../../core/header
   styleUrls: ['./video.component.scss'],
 })
 export class VideoComponent implements OnInit {
-  @Input() video!: SearchItem;
+  @Input() public video!: SearchItem;
+
   public snippet!: Snippet;
+
   public maxres!: Thumbnail;
+
   public statistics!: Statistics;
 
-  ngOnInit(): void {
+  public ngOnInit(): void {
     this.snippet = this.video.snippet;
     this.maxres = this.snippet.thumbnails.medium;
     this.statistics = this.video.statistics;

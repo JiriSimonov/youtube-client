@@ -12,11 +12,13 @@ import { MaterialModule } from 'src/app/core/material/material.module';
   styleUrls: ['./video-statistics.component.scss'],
 })
 export class VideoStatisticsComponent implements OnInit {
-  @Input('app-video-statistics') statistics!: Statistics;
+  @Input('app-video-statistics') public statistics!: Statistics;
+
   public stats: StatisticsItemModel[] = [];
+
   private icons = ['visibility', 'thumb_up', 'thumb_down', 'favorite', 'speaker_notes'];
 
-  ngOnInit(): void {
-    Object.values(this.statistics).forEach((stat, i) => this.stats.push({ icon: this.icons[i], count: stat }));
+  public ngOnInit(): void {
+    Object.values(this.statistics).map((stat, i) => this.stats.push({ icon: this.icons[i], count: stat }));
   }
 }

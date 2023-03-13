@@ -12,25 +12,32 @@ import { VideosService } from 'src/app/core/services/videos.service';
 })
 export class VideoDetailsComponent implements OnInit, OnDestroy {
   public video!: SearchItem | undefined;
+
   public snippet!: Snippet | undefined;
+
   public statistics!: Statistics | undefined;
+
   public maxres!: Thumbnail | undefined;
+
   private sub = new Subscription();
 
   constructor(private route: ActivatedRoute, private videosService: VideosService, private cdr: ChangeDetectorRef) {}
 
-  ngOnInit(): void {
+  public ngOnInit(): void {
     this.sub.add(
       this.route.paramMap
         .pipe(
           map((paramMap) => paramMap.get('videoId')),
           switchMap((videoIdFromRoute) =>
             this.videosService.getVideos().pipe(
-              tap((res) => {
-                this.video = res.items.find((video) => video.id === videoIdFromRoute);
-                this.snippet = this.video?.snippet;
-                this.statistics = this.video?.statistics;
-                this.maxres = this.snippet?.thumbnails.maxres;
+              tap((searchResponse) => {
+                this.video = searchResponse.items.find((video) => video.id === videoIdFromRoute);
+                if (this.video) {
+                  ({ snippet: this.snippet, statistics: this.statistics } = this.video);
+                }
+                if (this.snippet) {
+                  ({ maxres: this.maxres } = this.snippet.thumbnails);
+                }
                 this.cdr.detectChanges();
               }),
             ),
@@ -40,7 +47,7 @@ export class VideoDetailsComponent implements OnInit, OnDestroy {
     );
   }
 
-  ngOnDestroy(): void {
+  public ngOnDestroy(): void {
     this.sub.unsubscribe();
   }
 }
