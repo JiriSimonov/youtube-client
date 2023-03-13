@@ -10,8 +10,6 @@
   "insertPragma": false,
   "singleAttributePerLine": false,
   "bracketSameLine": true,
-  "jsxBracketSameLine": false,
-  "jsxSingleQuote": false,
   "proseWrap": "preserve",
   "quoteProps": "consistent",
   "requirePragma": false,

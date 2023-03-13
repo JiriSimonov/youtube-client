@@ -1,16 +1,16 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
-import { SortCriteria } from 'src/app/youtube/pipes/sort.pipe';
+import { SortOptions } from 'src/app/shared/models/sort-options.model';
 
 @Injectable({
   providedIn: 'root',
 })
 export class SorterService {
-  private sort$$ = new BehaviorSubject<{ direction: number; criteria: SortCriteria } | null>(null);
+  private sort$$ = new BehaviorSubject<SortOptions | null>(null);
 
   public sort$ = this.sort$$.asObservable();
 
-  changeSort(value: { direction: number; criteria: SortCriteria }) {
+  public changeSort(value: SortOptions): void {
     this.sort$$.next(value);
   }
 }

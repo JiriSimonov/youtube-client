@@ -23,28 +23,31 @@ export class VideoDetailsComponent implements OnInit, OnDestroy {
 
   constructor(private route: ActivatedRoute, private videosService: VideosService, private cdr: ChangeDetectorRef) {}
 
-  ngOnInit(): void {
+  public ngOnInit(): void {
     this.sub.add(
       this.route.paramMap
         .pipe(
           map((paramMap) => paramMap.get('videoId')),
           switchMap((videoIdFromRoute) =>
             this.videosService.getVideos().pipe(
-            tap((res) => {
-              this.video = res.items.find((video) => video.id === videoIdFromRoute);
-              this.snippet = this.video?.snippet;
-              this.statistics = this.video?.statistics;
-              this.maxres = this.snippet?.thumbnails.maxres;
-              this.cdr.detectChanges();
-            }),
-          ),
+              tap((searchResponse) => {
+                this.video = searchResponse.items.find((video) => video.id === videoIdFromRoute);
+                if (this.video) {
+                  ({ snippet: this.snippet, statistics: this.statistics } = this.video);
+                }
+                if (this.snippet) {
+                  ({ maxres: this.maxres } = this.snippet.thumbnails);
+                }
+                this.cdr.detectChanges();
+              }),
+            ),
           ),
         )
         .subscribe(),
     );
   }
 
-  ngOnDestroy(): void {
+  public ngOnDestroy(): void {
     this.sub.unsubscribe();
   }
 }

@@ -6,13 +6,13 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
   styleUrls: ['./sort-button.component.scss'],
 })
 export class SortButtonComponent {
-  @Input() name = '';
+  @Input() public name = '';
 
-  @Output() sort = new EventEmitter<number>();
+  @Output() public sort = new EventEmitter<number>();
 
   public direction = 1;
 
-  changeDirection() {
+  public changeDirection(): void {
     this.direction *= -1;
     this.sort.emit(this.direction);
   }

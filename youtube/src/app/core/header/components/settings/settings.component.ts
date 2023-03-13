@@ -9,7 +9,7 @@ import { VideosService } from 'src/app/core/services/videos.service';
 export class SettingsComponent {
   constructor(private videosService: VideosService) {}
 
-  resetVideosList() {
+  public resetVideosList(): void {
     this.videosService.resetVideosList();
   }
 }

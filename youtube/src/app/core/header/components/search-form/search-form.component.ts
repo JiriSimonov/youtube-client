@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { debounceTime, map, startWith, switchMap, throttleTime } from 'rxjs';
+import { debounceTime, startWith, Subscription, switchMap } from 'rxjs';
 import { VideosService } from '../../../services/videos.service';
 
 @Component({
@@ -8,29 +8,33 @@ import { VideosService } from '../../../services/videos.service';
   templateUrl: './search-form.component.html',
   styleUrls: ['./search-form.component.scss'],
 })
-export class SearchFormComponent implements OnInit {
+export class SearchFormComponent implements OnInit, OnDestroy {
   public searchForm!: FormGroup<{ search: FormControl<string | null> }>;
+
+  private subs = new Subscription();
 
   constructor(private videosService: VideosService) {}
 
-  get searchControl() {
+  public get searchControl(): FormControl<string | null> {
     return this.searchForm.controls.search;
   }
 
-  ngOnInit(): void {
+  public ngOnInit(): void {
     this.searchForm = new FormGroup({
       search: new FormControl<string>('', [Validators.required]),
     });
-    this.searchControl.valueChanges
-      .pipe(
-        startWith(''),
-        debounceTime(800),
-        switchMap(() => this.videosService.getVideos()),
-      )
-      .subscribe();
+    this.subs.add(
+      this.searchControl.valueChanges
+        .pipe(
+          startWith(''),
+          debounceTime(800),
+          switchMap(() => this.videosService.getVideos()),
+        )
+        .subscribe(),
+    );
   }
 
-  onSubmit() {
-    console.log(this.searchForm.value);
+  public ngOnDestroy(): void {
+    this.subs.unsubscribe();
   }
 }
