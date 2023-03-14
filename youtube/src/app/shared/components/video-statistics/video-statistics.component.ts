@@ -19,6 +19,7 @@ export class VideoStatisticsComponent implements OnInit {
   private icons = ['visibility', 'thumb_up', 'thumb_down', 'favorite', 'speaker_notes'];
 
   public ngOnInit(): void {
-    Object.values(this.statistics).map((stat, i) => this.stats.push({ icon: this.icons[i], count: stat }));
+    this.stats = Object.values(this.statistics).map((stat, i) => ({ icon: this.icons[i], count: stat }));
+    this.stats.splice(3, 1);
   }
 }

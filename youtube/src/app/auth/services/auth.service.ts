@@ -7,7 +7,7 @@ import { LocalStorageService } from 'src/app/core/storage/services/local-storage
   providedIn: 'root',
 })
 export class AuthService {
-  private isUser$$ = new BehaviorSubject<string>('Your Name');
+  private isUser$$ = new BehaviorSubject<string | null>(this.localStorage.getItem('auth'));
   public isUser$ = this.isUser$$.asObservable();
 
   constructor(private router: Router, private localStorage: LocalStorageService) {}

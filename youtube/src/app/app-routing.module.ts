@@ -1,19 +1,23 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { HomePageComponent } from './home/pages/home-page/home-page.component';
+import { isGuestGuard } from './core/guards/is-guest.guard';
+import { isUserGuard } from './core/guards/is-user.guard';
 
 const routes: Routes = [
   {
     path: '',
-    component: HomePageComponent,
+    pathMatch: 'full',
+    redirectTo: 'youtube',
   },
   {
     path: 'youtube',
     loadChildren: () => import('./youtube/youtube.module').then((m) => m.YoutubeModule),
+    canMatch: [isUserGuard],
   },
   {
     path: 'auth',
     loadChildren: () => import('./auth/auth.module').then((m) => m.AuthModule),
+    canMatch: [isGuestGuard],
   },
   {
     path: '**',
