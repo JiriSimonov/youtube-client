@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { isGuestGuard } from './core/guards/is-guest.guard';
 import { isUserGuard } from './core/guards/is-user.guard';
 
 const routes: Routes = [
@@ -12,12 +11,12 @@ const routes: Routes = [
   {
     path: 'youtube',
     loadChildren: () => import('./youtube/youtube.module').then((m) => m.YoutubeModule),
-    canMatch: [isUserGuard],
+    canMatch: [isUserGuard('user')],
   },
   {
     path: 'auth',
     loadChildren: () => import('./auth/auth.module').then((m) => m.AuthModule),
-    canMatch: [isGuestGuard],
+    canMatch: [isUserGuard('guest')],
   },
   {
     path: '**',
