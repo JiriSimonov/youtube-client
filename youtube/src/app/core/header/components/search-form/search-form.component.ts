@@ -28,7 +28,7 @@ export class SearchFormComponent implements OnInit, OnDestroy {
         .pipe(
           startWith(''),
           debounceTime(800),
-          switchMap(() => this.videosService.getVideos()),
+          switchMap(() => this.videosService.getVideos(this.searchControl.value ?? '')),
         )
         .subscribe(),
     );
