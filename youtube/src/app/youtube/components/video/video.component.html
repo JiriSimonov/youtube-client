@@ -1,5 +1,10 @@
 <mat-card class="video__card" [appBorderColor]="snippet.publishedAt">
-  <img src="{{ maxres.url }}" alt="{{ snippet.title }}" />
+  <img
+    class="video__img"
+    ngSrc="{{ maxres.url }}"
+    width="{{ maxres.width }}"
+    height="{{ maxres.height }}"
+    alt="{{ snippet.title }}" />
   <app-video-statistics [app-video-statistics]="statistics"></app-video-statistics>
   <mat-card-title class="video__title">{{ snippet.title }}</mat-card-title>
   <mat-card-actions class="video__actions">

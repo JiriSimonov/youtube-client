@@ -19,7 +19,7 @@ export class AuthService {
   }
 
   public signOut(): void {
-    this.isUser$$.next('Your Name');
+    this.isUser$$.next(null);
     this.localStorage.clear();
   }
 }
