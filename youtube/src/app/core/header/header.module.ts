@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
+import { RouterLink } from '@angular/router';
 import { HeaderPageComponent } from './pages/header-page/header-page.component';
 import { SearchFormComponent } from './components/search-form/search-form.component';
 import { FilterComponent } from './components/filter/filter.component';
@@ -18,7 +19,7 @@ import { SortButtonComponent } from './components/sort-button/sort-button.compon
     UserComponent,
     SortButtonComponent,
   ],
-  imports: [CommonModule, MaterialModule, ReactiveFormsModule],
+  imports: [CommonModule, MaterialModule, ReactiveFormsModule, RouterLink],
   exports: [HeaderPageComponent],
 })
 export class HeaderModule {}
