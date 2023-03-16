@@ -8,7 +8,7 @@ import { AuthService } from 'src/app/auth/services/auth.service';
   styleUrls: ['./user.component.scss'],
 })
 export class UserComponent implements OnInit, OnDestroy {
-  public username!: string;
+  public username = 'Your Name';
   private subs = new Subscription();
   constructor(private authService: AuthService) {}
 
@@ -17,12 +17,13 @@ export class UserComponent implements OnInit, OnDestroy {
       this.authService.isUser$
         .pipe(
           tap((username) => {
-            this.username = username || 'Your Name';
+            this.username = username || this.username;
           }),
         )
         .subscribe(),
     );
   }
+
   public ngOnDestroy(): void {
     this.subs.unsubscribe();
   }

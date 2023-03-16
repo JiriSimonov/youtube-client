@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-create-card',
@@ -16,10 +16,10 @@ export class CreateCardComponent implements OnInit {
 
   public ngOnInit(): void {
     this.createForm = new FormGroup({
-      title: new FormControl(),
-      description: new FormControl(),
-      img: new FormControl(),
-      link: new FormControl(),
+      title: new FormControl('', [Validators.required, Validators.minLength(3), Validators.maxLength(20)]),
+      description: new FormControl('', [Validators.maxLength(255)]),
+      img: new FormControl('', [Validators.required]),
+      link: new FormControl('', [Validators.required]),
     });
   }
 }

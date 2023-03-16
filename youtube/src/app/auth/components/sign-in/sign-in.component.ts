@@ -9,7 +9,7 @@ import { AuthService } from '../../services/auth.service';
 })
 export class SignInComponent implements OnInit {
   public signInForm!: FormGroup<{
-    username: FormControl<string | null>;
+    login: FormControl<string | null>;
     password: FormControl<string | null>;
   }>;
 
@@ -17,13 +17,13 @@ export class SignInComponent implements OnInit {
 
   public ngOnInit(): void {
     this.signInForm = new FormGroup({
-      username: new FormControl('', [Validators.required, Validators.minLength(3), Validators.maxLength(12)]),
+      login: new FormControl('', [Validators.required, Validators.email]),
       password: new FormControl('', [Validators.required, Validators.minLength(3), Validators.maxLength(12)]),
     });
   }
 
-  public get username(): string {
-    return this.signInForm.controls.username.value ?? 'Your Name';
+  public get login(): string {
+    return this.signInForm.controls.login.value ?? 'Your Name';
   }
 
   public onSubmit(username: string): void {

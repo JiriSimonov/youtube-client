@@ -1,19 +1,19 @@
 <form class="create" [formGroup]="createForm">
-  <mat-form-field>
+  <mat-form-field appearance="outline">
     <mat-label>Title</mat-label>
-    <input matInput />
+    <input matInput placeholder="Enter title" />
   </mat-form-field>
-  <mat-form-field>
+  <mat-form-field appearance="outline">
     <mat-label>Description</mat-label>
-    <input matInput />
+    <input matInput placeholder="Enter description " />
   </mat-form-field>
-  <mat-form-field>
+  <mat-form-field appearance="outline">
     <mat-label>Img</mat-label>
-    <input matInput />
+    <input matInput placeholder="Link to img" />
   </mat-form-field>
-  <mat-form-field>
+  <mat-form-field appearance="outline">
     <mat-label>Link video</mat-label>
-    <input matInput />
+    <input matInput placeholder="Link to video" />
   </mat-form-field>
   <button class="create__btn" mat-raised-button color="primary">Create card</button>
 </form>

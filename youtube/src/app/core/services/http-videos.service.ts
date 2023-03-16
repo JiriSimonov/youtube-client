@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, switchMap } from 'rxjs';
-import { SearchResponse, Videos } from '../header/models/search.response';
 import { environment } from 'src/environment/environment';
+import { SearchResponse, Videos } from '../header/models/search.response';
 
 @Injectable({
   providedIn: 'root',
@@ -16,7 +16,7 @@ export class HttpVideosService {
         params: {
           key: environment.API_KEY,
           type: 'video',
-          maxResults: environment.MAX_RESULTS,
+          maxResults: 16,
           q: value,
         },
       })
