@@ -2,7 +2,7 @@ import { ChangeDetectionStrategy, Component, OnDestroy, OnInit, ChangeDetectorRe
 import { ActivatedRoute } from '@angular/router';
 import { map, Subscription, switchMap, tap } from 'rxjs';
 import { SearchItem, Snippet, Statistics, Thumbnail } from 'src/app/core/header/models/search.item';
-import { VideosService } from 'src/app/core/services/videos.service';
+import { HttpVideosService } from 'src/app/core/services/http-videos.service';
 
 @Component({
   selector: 'app-video-details',
@@ -21,15 +21,15 @@ export class VideoDetailsComponent implements OnInit, OnDestroy {
 
   private sub = new Subscription();
 
-  constructor(private route: ActivatedRoute, private videosService: VideosService, private cdr: ChangeDetectorRef) {}
+  constructor(private route: ActivatedRoute, private cdr: ChangeDetectorRef, private httpService: HttpVideosService) {}
 
   public ngOnInit(): void {
     this.sub.add(
       this.route.paramMap
         .pipe(
-          map((paramMap) => paramMap.get('videoId')),
+          map((paramMap) => paramMap.get('videoId') ?? ''),
           switchMap((videoIdFromRoute) =>
-            this.videosService.getVideos().pipe(
+            this.httpService.getVideosById(videoIdFromRoute).pipe(
               tap((searchResponse) => {
                 this.video = searchResponse.items.find((video) => video.id === videoIdFromRoute);
                 if (this.video) {

@@ -19,8 +19,12 @@ const routes: Routes = [
     canMatch: [isUserGuard('guest')],
   },
   {
-    path: '**',
+    path: '404',
     loadChildren: () => import('./core/not-found/not-found.module').then((m) => m.NotFoundModule),
+  },
+  {
+    path: '**',
+    redirectTo: '404',
   },
 ];
 
