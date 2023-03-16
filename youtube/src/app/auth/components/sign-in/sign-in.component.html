@@ -1,11 +1,15 @@
 <form [formGroup]="signInForm" (ngSubmit)="onSubmit(login)">
-  <mat-form-field>
+  <mat-form-field appearance="outline">
     <mat-label>login</mat-label>
-    <input matInput formControlName="login" />
+    <input matInput formControlName="login" placeholder="''" />
+    <mat-error *ngIf="loginControl.hasError('email') && !loginControl.hasError('required')"
+      >Please enter a valid email address</mat-error
+    >
+    <mat-error *ngIf="loginControl.hasError('required')">required</mat-error>
   </mat-form-field>
-  <mat-form-field>
+  <mat-form-field appearance="outline">
     <mat-label>password</mat-label>
-    <input matInput formControlName="password" />
+    <input matInput formControlName="password" placeholder="''" />
   </mat-form-field>
   <button mat-raised-button color="primary" [disabled]="signInForm.invalid">Login</button>
 </form>

@@ -22,6 +22,10 @@ export class SignInComponent implements OnInit {
     });
   }
 
+  public get loginControl(): FormControl<string | null> {
+    return this.signInForm.controls.login;
+  }
+
   public get login(): string {
     return this.signInForm.controls.login.value ?? 'Your Name';
   }

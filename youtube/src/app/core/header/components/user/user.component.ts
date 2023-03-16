@@ -1,5 +1,4 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
-import { Subscription, tap } from 'rxjs';
+import { Component } from '@angular/core';
 import { AuthService } from 'src/app/auth/services/auth.service';
 
 @Component({
@@ -7,24 +6,7 @@ import { AuthService } from 'src/app/auth/services/auth.service';
   templateUrl: './user.component.html',
   styleUrls: ['./user.component.scss'],
 })
-export class UserComponent implements OnInit, OnDestroy {
-  public username = 'Your Name';
-  private subs = new Subscription();
+export class UserComponent {
+  public isUser$ = this.authService.isUser$;
   constructor(private authService: AuthService) {}
-
-  public ngOnInit(): void {
-    this.subs.add(
-      this.authService.isUser$
-        .pipe(
-          tap((username) => {
-            this.username = username || this.username;
-          }),
-        )
-        .subscribe(),
-    );
-  }
-
-  public ngOnDestroy(): void {
-    this.subs.unsubscribe();
-  }
 }
