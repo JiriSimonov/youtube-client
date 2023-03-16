@@ -6,12 +6,12 @@ import { NgOptimizedImage } from '@angular/common';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { CoreModule } from './core/core.module';
-import { InterseptorInterceptor } from './youtube/interceptors/interseptor.interceptor';
+import { YoutubeInterceptor } from './youtube/interceptors/youtube.interceptor';
 
 @NgModule({
   declarations: [AppComponent],
   imports: [BrowserModule, AppRoutingModule, CoreModule, NoopAnimationsModule, HttpClientModule, NgOptimizedImage],
-  providers: [{ provide: HTTP_INTERCEPTORS, useClass: InterseptorInterceptor, multi: true }],
+  providers: [{ provide: HTTP_INTERCEPTORS, useClass: YoutubeInterceptor, multi: true }],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
