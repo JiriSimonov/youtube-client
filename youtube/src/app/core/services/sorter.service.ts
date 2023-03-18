@@ -7,7 +7,6 @@ import { SortOptions } from 'src/app/shared/models/sort-options.model';
 })
 export class SorterService {
   private sort$$ = new BehaviorSubject<SortOptions | null>(null);
-
   public sort$ = this.sort$$.asObservable();
 
   public changeSort(value: SortOptions): void {

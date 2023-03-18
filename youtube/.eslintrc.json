@@ -17,7 +17,8 @@
         "plugin:@angular-eslint/template/process-inline-templates",
         "plugin:prettier/recommended",
         "airbnb-base",
-        "airbnb-typescript/base"
+        "airbnb-typescript/base",
+        "prettier"
       ],
       "rules": {
         "@typescript-eslint/array-type": [
