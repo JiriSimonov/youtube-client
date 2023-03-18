@@ -1,8 +1,8 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { StatisticsItemModel } from 'src/app/youtube/models/statistics-item.model';
-import { Statistics } from 'src/app/core/header/models/search.item';
 import { MaterialModule } from 'src/app/core/material/material.module';
+import { Statistics } from '../../../core/models/statistics.models';
 
 @Component({
   selector: 'app-video-statistics',

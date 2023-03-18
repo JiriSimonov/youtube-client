@@ -1,6 +1,6 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import { SearchItem } from 'src/app/core/header/models/search.item';
 import { SortOptions } from 'src/app/shared/models/sort-options.model';
+import { SearchItem } from '../../core/models/search-item.models';
 
 type SortMap = Record<SortCriteria, (a: SearchItem, b: SearchItem) => number>;
 export type SortCriteria = 'views' | 'date';

@@ -2,8 +2,8 @@ import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnDestroy, OnIni
 import { SorterService } from 'src/app/core/services/sorter.service';
 import { combineLatest, Subscription, tap } from 'rxjs';
 import { SortOptions } from 'src/app/shared/models/sort-options.model';
-import { SearchItem } from '../../../core/header/models/search.item';
 import { VideosService } from '../../../core/services/videos.service';
+import { SearchItem } from '../../../core/models/search-item.models';
 
 @Component({
   selector: 'app-videos',
