@@ -6,7 +6,9 @@
       "files": ["*.ts"],
       "parserOptions": {
         "project": ["tsconfig.json"],
-        "createDefaultProgram": true
+        "createDefaultProgram": true,
+        "ecmaVersion": "latest",
+        "sourceType": "module"
       },
       "extends": [
         "eslint:recommended",
@@ -15,8 +17,7 @@
         "plugin:@angular-eslint/template/process-inline-templates",
         "plugin:prettier/recommended",
         "airbnb-base",
-        "airbnb-typescript/base",
-        "prettier"
+        "airbnb-typescript/base"
       ],
       "rules": {
         "@typescript-eslint/array-type": [
@@ -39,8 +40,6 @@
             }
           }
         ],
-        "class-methods-use-this": "off",
-        "import/prefer-default-export": "off",
         "@typescript-eslint/lines-between-class-members": 0,
         "@typescript-eslint/no-explicit-any": 2,
         "@typescript-eslint/no-inferrable-types": 0,
