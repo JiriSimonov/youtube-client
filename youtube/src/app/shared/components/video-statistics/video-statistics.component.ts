@@ -16,11 +16,11 @@ export class VideoStatisticsComponent implements OnInit {
 
   public stats: StatisticsItemModel[] = [];
 
-  private icons = ['visibility', 'thumb_up', 'thumb_down', 'speaker_notes'];
+  private icons = ['visibility', 'thumb_up'];
 
   public ngOnInit(): void {
     this.stats = Object.values(this.statistics)
-      .filter((_, i) => i !== 3)
+      .filter((_, i) => i < 2)
       .map((stat, i) => ({ icon: this.icons[i], count: stat }));
   }
 }

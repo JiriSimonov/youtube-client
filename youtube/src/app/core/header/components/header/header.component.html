@@ -1,8 +1,8 @@
-<header class="header" *ngIf="showHeader">
+<header class="header" *ngIf="showHeader" [ngClass]="{ noSettings: showSettings }">
   <div class="container">
     <div class="header__container">
       <div class="header__controls">
-        <div class="header__logo">Logo</div>
+        <button class="header__logo" routerLink="/youtube"><span class="header__icon"></span>></button>
         <app-search-form></app-search-form>
         <app-settings (changeVisibility)="onSettingVisibilityChange()"></app-settings>
       </div>
