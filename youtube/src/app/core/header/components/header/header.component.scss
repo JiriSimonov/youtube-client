@@ -27,6 +27,10 @@
     grid-template-rows: 60px;
     row-gap: 30px;
     padding: 20px;
+
+    &_settings {
+      grid-template-rows: repeat(2, 40px);
+    }
   }
 
   &__controls {
@@ -34,8 +38,4 @@
     display: flex;
     justify-content: space-between;
   }
-}
-
-.noSettings {
-  grid-template-rows: repeat(2, 40px);
 }

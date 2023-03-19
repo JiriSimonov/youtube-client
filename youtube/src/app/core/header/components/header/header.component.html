@@ -1,6 +1,6 @@
 <header class="header" *ngIf="showHeader">
   <div class="container">
-    <div class="header__container" [ngClass]="{ noSettings: showSettings }">
+    <div class="header__container" [class.header__container_settings]="showSettings">
       <div class="header__controls">
         <button class="header__logo" routerLink="/youtube"><span class="header__icon"></span>></button>
         <app-search-form></app-search-form>

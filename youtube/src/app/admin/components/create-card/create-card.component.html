@@ -2,26 +2,26 @@
   <h2 class="create__title">Create new card</h2>
   <mat-form-field appearance="outline">
     <mat-label>Title</mat-label>
-    <input matInput formControlName="title" placeholder="Enter title" />
+    <input matInput [formControl]="titleControl" placeholder="Enter title" />
     <mat-error *ngIf="titleControl.hasError('required')">Required</mat-error>
     <mat-error *ngIf="titleControl.hasError('minlength')">The title is too short</mat-error>
     <mat-error *ngIf="titleControl.hasError('maxlength')">The title is too long</mat-error>
   </mat-form-field>
   <mat-form-field appearance="outline">
     <mat-label>Description</mat-label>
-    <input matInput formControlName="description" placeholder="Enter description " />
+    <input matInput [formControl]="descriptionControl" placeholder="Enter description " />
     <mat-error *ngIf="descriptionControl.hasError('required')">Required</mat-error>
     <mat-error *ngIf="descriptionControl.hasError('maxlength')">The description is too long</mat-error>
   </mat-form-field>
   <mat-form-field appearance="outline">
     <mat-label>Img</mat-label>
-    <input matInput formControlName="img" placeholder="Link to img" />
+    <input matInput [formControl]="imgControl" placeholder="Link to img" />
     <mat-error *ngIf="imgControl.hasError('required')">Required</mat-error>
     <mat-error *ngIf="imgControl.hasError('pattern')">The image link is invalid</mat-error>
   </mat-form-field>
   <mat-form-field appearance="outline">
     <mat-label>Link video</mat-label>
-    <input matInput formControlName="link" placeholder="Link to video" />
+    <input matInput [formControl]="linkControl" placeholder="Link to video" />
     <mat-error *ngIf="linkControl.hasError('required')">Required</mat-error>
     <mat-error *ngIf="linkControl.hasError('pattern')">The video link is invalid</mat-error>
   </mat-form-field>

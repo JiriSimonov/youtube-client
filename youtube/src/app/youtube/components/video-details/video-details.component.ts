@@ -1,11 +1,11 @@
 import { ChangeDetectionStrategy, Component, OnDestroy, OnInit, ChangeDetectorRef } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { map, Subscription, switchMap, tap } from 'rxjs';
+import { SearchItem } from 'src/app/core/models/search-item.models';
 import { Snippet } from 'src/app/core/models/snippet.model';
+import { Statistics } from 'src/app/core/models/statistics.models';
 import { Thumbnail } from 'src/app/core/models/thumbnail.model';
 import { HttpVideosService } from 'src/app/core/services/http-videos.service';
-import { SearchItem } from '../../../core/models/search-item.models';
-import { Statistics } from '../../../core/models/statistics.models';
 
 @Component({
   selector: 'app-video-details',
