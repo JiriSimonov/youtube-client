@@ -1,7 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { debounceTime, filter, startWith, Subscription, switchMap } from 'rxjs';
-import { VideosService } from '../../../services/videos.service';
+import { VideosService } from 'src/app/core/services/videos.service';
 
 @Component({
   selector: 'app-search-form',
