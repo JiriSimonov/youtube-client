@@ -4,10 +4,10 @@
       <div class="header__controls">
         <div class="header__logo">Logo</div>
         <app-search-form></app-search-form>
-        <app-settings></app-settings>
+        <app-settings (changeVisibility)="onSettingVisibilityChange()"></app-settings>
       </div>
       <app-user></app-user>
-      <app-filter></app-filter>
+      <app-filter *ngIf="showSettings"></app-filter>
     </div>
   </div>
 </header>

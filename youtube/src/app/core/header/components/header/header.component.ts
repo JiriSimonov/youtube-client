@@ -11,6 +11,7 @@ import { filter, Subscription, tap } from 'rxjs';
 export class HeaderComponent implements OnInit, OnDestroy {
   private subs = new Subscription();
   public showHeader = true;
+  public showSettings = false;
 
   constructor(private router: Router, private cdr: ChangeDetectorRef) {}
   public ngOnInit(): void {
@@ -30,6 +31,12 @@ export class HeaderComponent implements OnInit, OnDestroy {
         .subscribe(),
     );
   }
+
+  public onSettingVisibilityChange(): void {
+    this.showSettings = !this.showSettings;
+    this.cdr.detectChanges();
+  }
+
   public ngOnDestroy(): void {
     this.subs.unsubscribe();
   }
