@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { isValidPassword } from 'src/app/shared/validators/password.validator';
 import { AuthService } from '../../services/auth.service';
@@ -7,6 +7,7 @@ import { AuthService } from '../../services/auth.service';
   selector: 'app-sign-in',
   templateUrl: './sign-in.component.html',
   styleUrls: ['./sign-in.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class SignInComponent implements OnInit {
   public signInForm!: FormGroup<{

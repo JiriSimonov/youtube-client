@@ -1,8 +1,8 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { StatisticsItemModel } from 'src/app/youtube/models/statistics-item.model';
 import { MaterialModule } from 'src/app/core/material/material.module';
-import { Statistics } from '../../../core/models/statistics.models';
+import { Statistics } from 'src/app/core/models/statistics.models';
 
 @Component({
   selector: 'app-video-statistics',
@@ -10,6 +10,7 @@ import { Statistics } from '../../../core/models/statistics.models';
   imports: [CommonModule, MaterialModule],
   templateUrl: './video-statistics.component.html',
   styleUrls: ['./video-statistics.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class VideoStatisticsComponent implements OnInit {
   @Input('app-video-statistics') public statistics!: Statistics;
