@@ -10,6 +10,10 @@
   <mat-form-field appearance="outline">
     <mat-label>password</mat-label>
     <input type="password" matInput formControlName="password" placeholder="paSSword!" />
+    <mat-error *ngIf="passwordControl.hasError('required')">required</mat-error>
+    <mat-error *ngIf="passwordControl.hasError('invalidPassword')"
+      >Your password must have lower case, upper case, numeric characters and special character</mat-error
+    >
   </mat-form-field>
   <button mat-raised-button color="primary" [disabled]="signInForm.invalid">Login</button>
 </form>

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { urlPattern } from 'src/app/shared/validators/validators';
+import { urlPattern } from 'src/app/shared/validators/url-pattern';
 
 @Component({
   selector: 'app-create-card',

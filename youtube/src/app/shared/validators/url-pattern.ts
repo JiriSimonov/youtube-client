@@ -7,4 +7,3 @@ export const urlPattern = new RegExp(
     '(\\#[-a-z\\d_]*)?$',
   'i',
 );
-export const passwordPattern = /[!"#$%&'()*+,-.\\/:;<=>?@[\]^_`{|}~]+/;
