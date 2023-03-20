@@ -19,6 +19,11 @@ const routes: Routes = [
     canMatch: [isUserGuard('guest')],
   },
   {
+    path: 'admin',
+    loadChildren: () => import('./admin/admin.module').then((m) => m.AdminModule),
+    canMatch: [isUserGuard('user')],
+  },
+  {
     path: '404',
     loadChildren: () => import('./core/not-found/not-found.module').then((m) => m.NotFoundModule),
   },

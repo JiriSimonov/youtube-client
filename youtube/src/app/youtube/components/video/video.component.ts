@@ -1,5 +1,8 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { SearchItem, Snippet, Statistics, Thumbnail } from '../../../core/header/models/search.item';
+import { SearchItem } from 'src/app/core/models/search-item.models';
+import { Snippet } from 'src/app/core/models/snippet.model';
+import { Statistics } from 'src/app/core/models/statistics.models';
+import { Thumbnail } from 'src/app/core/models/thumbnail.model';
 
 @Component({
   selector: 'app-video',

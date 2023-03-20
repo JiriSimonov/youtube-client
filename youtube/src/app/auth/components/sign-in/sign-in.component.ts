@@ -1,15 +1,17 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { isValidPassword } from 'src/app/shared/validators/password.validator';
 import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-sign-in',
   templateUrl: './sign-in.component.html',
   styleUrls: ['./sign-in.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class SignInComponent implements OnInit {
   public signInForm!: FormGroup<{
-    username: FormControl<string | null>;
+    login: FormControl<string | null>;
     password: FormControl<string | null>;
   }>;
 
@@ -17,13 +19,21 @@ export class SignInComponent implements OnInit {
 
   public ngOnInit(): void {
     this.signInForm = new FormGroup({
-      username: new FormControl('', [Validators.required, Validators.minLength(3), Validators.maxLength(12)]),
-      password: new FormControl('', [Validators.required, Validators.minLength(3), Validators.maxLength(12)]),
+      login: new FormControl('', [Validators.required, Validators.email]),
+      password: new FormControl('', [Validators.required, Validators.minLength(8), isValidPassword()]),
     });
   }
 
-  public get username(): string {
-    return this.signInForm.controls.username.value ?? 'Your Name';
+  public get loginControl(): FormControl<string | null> {
+    return this.signInForm.controls.login;
+  }
+
+  public get passwordControl(): FormControl<string | null> {
+    return this.signInForm.controls.password;
+  }
+
+  public get login(): string {
+    return this.signInForm.controls.login.value ?? 'Your Name';
   }
 
   public onSubmit(username: string): void {

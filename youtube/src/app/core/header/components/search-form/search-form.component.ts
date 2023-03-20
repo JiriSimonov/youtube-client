@@ -1,7 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { debounceTime, startWith, Subscription, switchMap } from 'rxjs';
-import { VideosService } from '../../../services/videos.service';
+import { debounceTime, filter, startWith, Subscription, switchMap } from 'rxjs';
+import { VideosService } from 'src/app/core/services/videos.service';
 
 @Component({
   selector: 'app-search-form',
@@ -21,13 +21,14 @@ export class SearchFormComponent implements OnInit, OnDestroy {
 
   public ngOnInit(): void {
     this.searchForm = new FormGroup({
-      search: new FormControl<string>('', [Validators.required]),
+      search: new FormControl<string | null>('', [Validators.required]),
     });
     this.subs.add(
       this.searchControl.valueChanges
         .pipe(
           startWith(''),
           debounceTime(800),
+          filter((search: string | null) => (search ? search.length > 3 : search === '')),
           switchMap(() => this.videosService.getVideos(this.searchControl.value ?? '')),
         )
         .subscribe(),

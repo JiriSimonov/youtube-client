@@ -1,15 +1,15 @@
-import { Component } from '@angular/core';
-import { VideosService } from 'src/app/core/services/videos.service';
+import { ChangeDetectionStrategy, Component, EventEmitter, Output } from '@angular/core';
 
 @Component({
   selector: 'app-settings',
   templateUrl: './settings.component.html',
   styleUrls: ['./settings.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class SettingsComponent {
-  constructor(private videosService: VideosService) {}
+  @Output() public changeVisibility = new EventEmitter<void>();
 
-  public resetVideosList(): void {
-    this.videosService.resetVideosList();
+  public changeSettingsVisibility(): void {
+    this.changeVisibility.emit();
   }
 }

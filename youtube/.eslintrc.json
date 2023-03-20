@@ -6,7 +6,9 @@
       "files": ["*.ts"],
       "parserOptions": {
         "project": ["tsconfig.json"],
-        "createDefaultProgram": true
+        "createDefaultProgram": true,
+        "ecmaVersion": "latest",
+        "sourceType": "module"
       },
       "extends": [
         "eslint:recommended",
@@ -39,8 +41,6 @@
             }
           }
         ],
-        "class-methods-use-this": "off",
-        "import/prefer-default-export": "off",
         "@typescript-eslint/lines-between-class-members": 0,
         "@typescript-eslint/no-explicit-any": 2,
         "@typescript-eslint/no-inferrable-types": 0,

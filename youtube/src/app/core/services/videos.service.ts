@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, combineLatest, Observable } from 'rxjs';
-import { tap, map, mergeMap } from 'rxjs/operators';
+import { tap, map } from 'rxjs/operators';
 import { HttpVideosService } from './http-videos.service';
-import { SearchItem } from '../header/models/search.item';
-import { SearchResponse, Videos } from '../header/models/search.response';
+import { SearchItem } from '../models/search-item.models';
+import { Videos } from '../models/videos.model';
 
 @Injectable({
   providedIn: 'root',

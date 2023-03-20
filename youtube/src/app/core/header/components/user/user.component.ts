@@ -1,29 +1,13 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
-import { Subscription, tap } from 'rxjs';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { AuthService } from 'src/app/auth/services/auth.service';
 
 @Component({
   selector: 'app-user',
   templateUrl: './user.component.html',
   styleUrls: ['./user.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class UserComponent implements OnInit, OnDestroy {
-  public username!: string;
-  private subs = new Subscription();
+export class UserComponent {
+  public isUser$ = this.authService.isUser$;
   constructor(private authService: AuthService) {}
-
-  public ngOnInit(): void {
-    this.subs.add(
-      this.authService.isUser$
-        .pipe(
-          tap((username) => {
-            this.username = username || 'Your Name';
-          }),
-        )
-        .subscribe(),
-    );
-  }
-  public ngOnDestroy(): void {
-    this.subs.unsubscribe();
-  }
 }
