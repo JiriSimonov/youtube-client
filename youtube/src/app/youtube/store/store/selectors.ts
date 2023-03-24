@@ -1,11 +1,10 @@
-import { createSelector } from '@ngrx/store';
-import { AppState } from 'src/app/core/models/app-state.model';
+import { createFeatureSelector, createSelector } from '@ngrx/store';
 import { VideosState } from '../models/videos-state.model';
 
-export const selectVideosFeature = (state: AppState): VideosState => state.videos;
+const getVideosFeature = createFeatureSelector<VideosState>('youtube');
 export const selectIsVideosLoading = createSelector(
-  selectVideosFeature,
+  getVideosFeature,
   (videosState: VideosState): boolean => videosState.isLoading,
 );
-export const selectVideos = createSelector(selectVideosFeature, (videosState) => videosState.videos);
-export const selectError = createSelector(selectVideosFeature, (videosState) => videosState.error);
+export const selectVideos = createSelector(getVideosFeature, (videosState) => videosState.videos);
+export const selectError = createSelector(getVideosFeature, (videosState) => videosState.error);
