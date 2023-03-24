@@ -3,6 +3,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { setCard } from 'src/app/core/store/actions';
+import { datePattern } from 'src/app/shared/validators/date-pattern';
 import { isValidDate } from 'src/app/shared/validators/date.validator';
 import { urlPattern } from 'src/app/shared/validators/url-pattern';
 import { CustomCard } from '../../models/custom-card.model';
@@ -29,7 +30,7 @@ export class CreateCardComponent implements OnInit {
       description: new FormControl('', [Validators.maxLength(255)]),
       img: new FormControl('', [Validators.required, Validators.pattern(urlPattern)]),
       link: new FormControl('', [Validators.required, Validators.pattern(urlPattern)]),
-      date: new FormControl('', [Validators.required, isValidDate()]),
+      date: new FormControl('', [Validators.required, isValidDate(), Validators.pattern(datePattern)]),
     });
   }
 

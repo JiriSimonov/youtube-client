@@ -29,6 +29,7 @@
     <mat-label>Creation date</mat-label>
     <input matInput [formControl]="dateControl" placeholder="Creation date" />
     <mat-error *ngIf="dateControl.hasError('required')">Required</mat-error>
+    <mat-error *ngIf="dateControl.hasError('pattern')">The date is invalid (YYYY-MM-DD)</mat-error>
     <mat-error *ngIf="dateControl.hasError('invalidDate')">The date is invalid</mat-error>
   </mat-form-field>
   <button class="create__btn" mat-raised-button color="primary" [disabled]="createForm.invalid">Create card</button>
