@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
-import { AppState } from 'src/app/core/models/app-state.model';
+import { setCard } from 'src/app/core/store/actions';
 import { isValidDate } from 'src/app/shared/validators/date.validator';
 import { urlPattern } from 'src/app/shared/validators/url-pattern';
-import { selectIsVideosLoading } from 'src/app/youtube/store/store/selectors';
+import { CustomCard } from '../../models/custom-card.model';
 
 @Component({
   selector: 'app-create-card',
@@ -12,8 +13,6 @@ import { selectIsVideosLoading } from 'src/app/youtube/store/store/selectors';
   styleUrls: ['./create-card.component.scss'],
 })
 export class CreateCardComponent implements OnInit {
-  public isLoading$ = this.store.select(selectIsVideosLoading);
-  constructor(private store: Store<AppState>) {}
   public createForm!: FormGroup<{
     title: FormControl<string | null>;
     description: FormControl<string | null>;
@@ -21,6 +20,8 @@ export class CreateCardComponent implements OnInit {
     link: FormControl<string | null>;
     date: FormControl<string | null>;
   }>;
+
+  constructor(private store: Store, private router: Router) {}
 
   public ngOnInit(): void {
     this.createForm = new FormGroup({
@@ -50,5 +51,18 @@ export class CreateCardComponent implements OnInit {
 
   public get dateControl(): FormControl<string | null> {
     return this.createForm.controls.date;
+  }
+
+  public onSubmit(): void {
+    const card: CustomCard = {
+      title: this.titleControl.value ?? '',
+      description: this.descriptionControl.value ?? '',
+      imgLink: this.imgControl.value ?? '',
+      videoLink: this.imgControl.value ?? '',
+      creationAt: this.dateControl.value ?? '',
+    };
+    this.store.dispatch(setCard({ card }));
+    this.router.navigate(['/youtube']).catch();
+    this.createForm.reset();
   }
 }

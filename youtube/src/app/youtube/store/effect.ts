@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
-import { catchError, map, mergeMap, of, switchMap } from 'rxjs';
+import { catchError, map, of, switchMap } from 'rxjs';
 import { HttpVideosService } from 'src/app/core/services/http-videos.service';
 import { getVideos, getVideosFailure, getVideosSuccess } from './actions';
 

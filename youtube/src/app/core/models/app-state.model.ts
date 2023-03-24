@@ -3,4 +3,5 @@ import { CardsState } from './cards-state.model';
 
 export interface AppState {
   videos: VideosState;
+  cards: CardsState;
 }

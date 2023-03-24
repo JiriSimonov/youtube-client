@@ -1,14 +1,17 @@
 import { createReducer, on } from '@ngrx/store';
 import { CardsState } from '../models/cards-state.model';
-import { getCards } from './actions';
+import { getCards, getCardsFailure, getCardsSuccess, setCard } from './actions';
 
-export const cardInitialState: CardsState = {
+export const cardsInitialState: CardsState = {
   isLoading: false,
   cards: [],
   error: null,
 };
 
 export const cardsReducers = createReducer(
-  cardInitialState,
-  on(getCards, (state: CardsState): CardsState => ({ ...state, isLoading: true })),
+  cardsInitialState,
+  on(getCards, (state): CardsState => ({ ...state, isLoading: true })),
+  on(getCardsSuccess, (state, action): CardsState => ({ ...state, isLoading: false, cards: action.cards })),
+  on(getCardsFailure, (state, action): CardsState => ({ ...state, isLoading: false, error: action.error })),
+  on(setCard, (state, action): CardsState => ({ ...state, cards: [...state.cards, action.card] })),
 );

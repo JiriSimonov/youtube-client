@@ -5,13 +5,13 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { StoreModule } from '@ngrx/store';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { NgOptimizedImage } from '@angular/common';
+import { EffectsModule } from '@ngrx/effects';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { CoreModule } from './core/core.module';
 import { YoutubeInterceptor } from './youtube/interceptors/youtube.interceptor';
 import { cardsReducers } from './core/store/reducers';
-import { ReduxModule } from './youtube/store/redux.module';
-import { EffectsModule } from '@ngrx/effects';
+import { YoutubeStoreModule } from './youtube/store/youtube-store.module';
 
 @NgModule({
   declarations: [AppComponent],
@@ -25,7 +25,7 @@ import { EffectsModule } from '@ngrx/effects';
     StoreModule.forRoot({ cards: cardsReducers }),
     StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: !isDevMode() }),
     EffectsModule.forRoot(),
-    ReduxModule,
+    YoutubeStoreModule,
   ],
   providers: [{ provide: HTTP_INTERCEPTORS, useClass: YoutubeInterceptor, multi: true }],
   bootstrap: [AppComponent],

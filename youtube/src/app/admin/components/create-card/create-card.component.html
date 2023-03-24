@@ -1,4 +1,4 @@
-<form class="create" [formGroup]="createForm">
+<form class="create" [formGroup]="createForm" (ngSubmit)="onSubmit()">
   <h2 class="create__title">Create new card</h2>
   <mat-form-field appearance="outline">
     <mat-label>Title</mat-label>
@@ -33,5 +33,3 @@
   </mat-form-field>
   <button class="create__btn" mat-raised-button color="primary" [disabled]="createForm.invalid">Create card</button>
 </form>
-
-<h1>{{ isLoading$ | async }}</h1>

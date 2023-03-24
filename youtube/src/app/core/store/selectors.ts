@@ -1,5 +1,6 @@
-import { createSelector } from '@ngrx/store';
-import { AppState } from '../models/app-state.model';
+import { createFeatureSelector, createSelector } from '@ngrx/store';
+import { CardsState } from '../models/cards-state.model';
 
-export const selectCardsFeature = (state: AppState) => state.cards;
-export const isCardsLoadingSelector = createSelector(selectCardsFeature, (state) => state.isLoading);
+export const selectCardsFeature = createFeatureSelector<CardsState>('cards');
+export const selectIsCardsLoading = createSelector(selectCardsFeature, (cardsState) => cardsState.isLoading);
+export const selectCards = createSelector(selectCardsFeature, (cardsState) => cardsState.cards);
