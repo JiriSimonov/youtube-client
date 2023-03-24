@@ -1,9 +1,10 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, combineLatest, Observable } from 'rxjs';
 import { tap, map } from 'rxjs/operators';
-import { HttpVideosService } from './http-videos.service';
+import { select, Store } from '@ngrx/store';
+import { selectVideos } from 'src/app/youtube/store/store/selectors';
 import { SearchItem } from '../models/search-item.models';
-import { Videos } from '../models/videos.model';
+import { AppState } from '../models/app-state.model';
 
 @Injectable({
   providedIn: 'root',
@@ -16,12 +17,13 @@ export class VideosService {
     map(([arr, str]) => arr.filter((item) => item.snippet.title.toLowerCase().includes(str.toLowerCase()))),
   );
 
-  constructor(private httpVideosService: HttpVideosService) {}
+  constructor(private store: Store<AppState>) {}
 
-  public getVideos(value: string): Observable<Videos> {
-    return this.httpVideosService.getVideos(value).pipe(
-      tap((videos: Videos) => {
-        this.videos$$.next(videos.items);
+  public getVideos(): Observable<SearchItem[]> {
+    return this.store.select(selectVideos).pipe(
+      tap((videos) => {
+        console.log(videos);
+        this.videos$$.next(videos);
       }),
     );
   }

@@ -15,7 +15,6 @@ export class HttpVideosService {
     return this.http
       .get<SearchResponse>('search', {
         params: {
-          key: environment.API_KEY,
           type: 'video',
           maxResults: 16,
           q: value,
@@ -32,7 +31,6 @@ export class HttpVideosService {
   public getVideosById(id: string): Observable<Videos> {
     return this.http.get<Videos>('videos', {
       params: {
-        key: environment.API_KEY,
         id,
         part: 'snippet,statistics',
       },

@@ -13,9 +13,7 @@ import { VideosService } from 'src/app/core/services/videos.service';
 })
 export class VideosComponent implements OnInit, OnDestroy {
   public sortOptions: SortOptions | null = null;
-
   public videos: SearchItem[] = [];
-
   private subs = new Subscription();
 
   constructor(
