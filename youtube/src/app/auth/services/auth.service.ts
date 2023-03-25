@@ -18,7 +18,7 @@ export class AuthService {
     this.router.navigate(['youtube'], { replaceUrl: true }).catch();
   }
 
-  public signOut(): void {
+  public logout(): void {
     this.isUser$$.next(null);
     this.localStorage.clear();
   }

@@ -12,8 +12,8 @@ export class UserComponent {
   public isUser$ = this.authService.isUser$;
   constructor(private authService: AuthService, private router: Router) {}
 
-  public logOut(): void {
-    this.authService.signOut();
+  public logout(): void {
+    this.authService.logout();
     this.router.navigate(['auth'], { replaceUrl: true }).catch();
   }
 }
