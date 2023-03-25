@@ -2,4 +2,4 @@
   <div class="user__username">{{ isUser$ | async }}</div>
   <div class="user__avatar"><mat-icon class="mat-icon-rtl-mirror">account_box</mat-icon></div>
 </div>
-<button mat-raised-button color="primary" routerLink="/auth" (click)="logout()">Log out</button>
+<button *ngIf="isUser$ | async" mat-raised-button color="primary" (click)="logout()">Log out</button>

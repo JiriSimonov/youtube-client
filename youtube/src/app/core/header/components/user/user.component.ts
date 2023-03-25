@@ -10,6 +10,7 @@ import { AuthService } from 'src/app/auth/services/auth.service';
 })
 export class UserComponent {
   public isUser$ = this.authService.isUser$;
+
   constructor(private authService: AuthService, private router: Router) {}
 
   public logout(): void {
