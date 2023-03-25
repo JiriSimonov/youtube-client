@@ -10,13 +10,13 @@ import { SearchResponse } from '../models/search-response.model';
 export class HttpVideosService {
   constructor(private http: HttpClient) {}
 
-  public getVideos(value: string): Observable<Videos> {
+  public getVideos(searchValue: string): Observable<Videos> {
     return this.http
       .get<SearchResponse>('search', {
         params: {
           type: 'video',
           maxResults: 16,
-          q: value,
+          q: searchValue,
         },
       })
       .pipe(

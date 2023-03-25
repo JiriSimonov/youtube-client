@@ -9,8 +9,7 @@ import { selectVideos } from 'src/app/youtube/store/selectors';
 })
 export class VideosService {
   private filterValue$$ = new BehaviorSubject('');
-  private videosFromAPI$ = this.store.select(selectVideos);
-  public videos$ = combineLatest([this.videosFromAPI$, this.filterValue$$]).pipe(
+  public videos$ = combineLatest([this.store.select(selectVideos), this.filterValue$$]).pipe(
     map(([arr, str]) => arr.filter((item) => item.snippet.title.toLowerCase().includes(str.toLowerCase()))),
   );
 
