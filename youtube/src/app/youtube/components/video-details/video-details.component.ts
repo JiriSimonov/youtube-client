@@ -15,13 +15,9 @@ import { HttpVideosService } from 'src/app/core/services/http-videos.service';
 })
 export class VideoDetailsComponent implements OnInit, OnDestroy {
   public video!: SearchItem | undefined;
-
   public snippet!: Snippet | undefined;
-
   public statistics!: Statistics | undefined;
-
   public maxres!: Thumbnail | undefined;
-
   private sub = new Subscription();
 
   constructor(private route: ActivatedRoute, private cdr: ChangeDetectorRef, private httpService: HttpVideosService) {}

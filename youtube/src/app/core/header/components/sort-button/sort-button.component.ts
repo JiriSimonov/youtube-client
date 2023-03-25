@@ -6,9 +6,8 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
   styleUrls: ['./sort-button.component.scss'],
 })
 export class SortButtonComponent {
-  @Input() public name = '';
-
   @Output() public sort = new EventEmitter<number>();
+  @Input() public name = '';
 
   public direction = 1;
 

@@ -5,4 +5,3 @@ export const getCards = createAction('[Cards] get cards');
 export const getCardsSuccess = createAction('[Cards] get cards success', props<{ cards: CustomCard[] }>());
 export const getCardsFailure = createAction('[Cards] get cards failure', props<{ error: string }>());
 export const setCard = createAction('[Cards] set card', props<{ card: CustomCard }>());
-export const setCardSuccess = createAction('[Cards] set card success', props<{ card: CustomCard }>());

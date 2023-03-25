@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
@@ -12,6 +12,7 @@ import { CustomCard } from '../../models/custom-card.model';
   selector: 'app-create-card',
   templateUrl: './create-card.component.html',
   styleUrls: ['./create-card.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class CreateCardComponent implements OnInit {
   public createForm!: FormGroup<{

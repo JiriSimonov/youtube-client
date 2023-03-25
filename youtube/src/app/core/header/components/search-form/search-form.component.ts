@@ -2,7 +2,6 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Store } from '@ngrx/store';
 import { debounceTime, filter, startWith, Subscription, tap } from 'rxjs';
-import { VideosService } from 'src/app/core/services/videos.service';
 import { getVideos } from 'src/app/youtube/store/actions';
 
 @Component({
@@ -14,7 +13,7 @@ export class SearchFormComponent implements OnInit, OnDestroy {
   public searchForm!: FormGroup<{ search: FormControl<string | null> }>;
   private subs = new Subscription();
 
-  constructor(private videosService: VideosService, private store: Store) {}
+  constructor(private store: Store) {}
 
   public get searchControl(): FormControl<string | null> {
     return this.searchForm.controls.search;
