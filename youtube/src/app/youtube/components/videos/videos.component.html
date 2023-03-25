@@ -1,3 +1,6 @@
-<ul class="videos__list">
+<div class="videos__container" *ngIf="isLoading$ | async">
+  <h1 class="videos__title">Loading...</h1>
+</div>
+<ul class="videos__list" *ngIf="!(isLoading$ | async)">
   <app-video *ngFor="let video of videos | sort : sortOptions; trackBy: trackBy" [video]="video"></app-video>
 </ul>

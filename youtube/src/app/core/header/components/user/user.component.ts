@@ -1,4 +1,5 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { Router } from '@angular/router';
 import { AuthService } from 'src/app/auth/services/auth.service';
 
 @Component({
@@ -9,5 +10,10 @@ import { AuthService } from 'src/app/auth/services/auth.service';
 })
 export class UserComponent {
   public isUser$ = this.authService.isUser$;
-  constructor(private authService: AuthService) {}
+  constructor(private authService: AuthService, private router: Router) {}
+
+  public logOut(): void {
+    this.authService.signOut();
+    this.router.navigate(['auth'], { replaceUrl: true }).catch();
+  }
 }

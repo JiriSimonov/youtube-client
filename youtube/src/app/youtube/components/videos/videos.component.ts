@@ -4,6 +4,8 @@ import { combineLatest, Subscription, tap } from 'rxjs';
 import { SortOptions } from 'src/app/shared/models/sort-options.model';
 import { SearchItem } from 'src/app/core/models/search-item.models';
 import { VideosService } from 'src/app/core/services/videos.service';
+import { Store } from '@ngrx/store';
+import { selectIsVideosLoading } from '../../store/selectors';
 
 @Component({
   selector: 'app-videos',
@@ -14,9 +16,11 @@ import { VideosService } from 'src/app/core/services/videos.service';
 export class VideosComponent implements OnInit, OnDestroy {
   public sortOptions: SortOptions | null = null;
   public videos: SearchItem[] = [];
+  public isLoading$ = this.store.select(selectIsVideosLoading);
   private subs = new Subscription();
 
   constructor(
+    private store: Store,
     private videosService: VideosService,
     private sortService: SorterService,
     private cdr: ChangeDetectorRef,
