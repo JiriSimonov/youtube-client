@@ -12,7 +12,6 @@ import { SortCriteria } from 'src/app/youtube/pipes/sort.pipe';
 })
 export class FilterComponent implements OnInit, OnDestroy {
   public filterForm!: FormGroup<{ filter: FormControl<string | null> }>;
-
   private subs = new Subscription();
 
   constructor(private videosService: VideosService, private sorterService: SorterService) {}

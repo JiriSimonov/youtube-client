@@ -1,11 +1,17 @@
 {
   "root": true,
-  "ignorePatterns": ["projects/**/*"],
+  "ignorePatterns": [
+    "projects/**/*"
+  ],
   "overrides": [
     {
-      "files": ["*.ts"],
+      "files": [
+        "*.ts"
+      ],
       "parserOptions": {
-        "project": ["tsconfig.json"],
+        "project": [
+          "tsconfig.json"
+        ],
         "createDefaultProgram": true,
         "ecmaVersion": "latest",
         "sourceType": "module"
@@ -46,9 +52,15 @@
         "@typescript-eslint/no-inferrable-types": 0,
         "@typescript-eslint/no-non-null-assertion": 1,
         "@typescript-eslint/no-unnecessary-type-assertion": 2,
-        "block-spacing": ["warn", "always"],
+        "block-spacing": [
+          "warn",
+          "always"
+        ],
         "class-methods-use-this": 0,
-        "curly": ["warn", "all"],
+        "curly": [
+          "warn",
+          "all"
+        ],
         "eol-last": 2,
         "import/prefer-default-export": 0,
         "max-len": [
@@ -59,7 +71,10 @@
             "tabWidth": 2
           }
         ],
-        "max-lines-per-function": ["error", 40],
+        "max-lines-per-function": [
+          "error",
+          40
+        ],
         "no-console": 0,
         "no-debugger": 0,
         "no-multiple-empty-lines": [
@@ -76,12 +91,21 @@
         "no-template-curly-in-string": 1,
         "no-underscore-dangle": 0,
         "no-unused-vars": 0,
-        "object-curly-spacing": ["warn", "always"],
+        "object-curly-spacing": [
+          "warn",
+          "always"
+        ],
         "spaced-comment": [
           "error",
           "always",
           {
-            "markers": ["!", "?", "//", "todo", "*"]
+            "markers": [
+              "!",
+              "?",
+              "//",
+              "todo",
+              "*"
+            ]
           }
         ],
         "@angular-eslint/directive-selector": [
@@ -103,9 +127,15 @@
       }
     },
     {
-      "files": ["*.html"],
-      "extends": ["plugin:@angular-eslint/template/recommended"],
-      "excludedFiles": ["*inline-template-*.component.html"],
+      "files": [
+        "*.html"
+      ],
+      "extends": [
+        "plugin:@angular-eslint/template/recommended"
+      ],
+      "excludedFiles": [
+        "*inline-template-*.component.html"
+      ],
       "rules": {
         "prettier/prettier": [
           "error",
@@ -114,6 +144,14 @@
           }
         ]
       }
+    },
+    {
+      "files": [
+        "*.ts"
+      ],
+      "extends": [
+        "plugin:@ngrx/all"
+      ]
     }
   ]
 }

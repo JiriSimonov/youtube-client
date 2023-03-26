@@ -1,7 +1,8 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { debounceTime, filter, startWith, Subscription, switchMap } from 'rxjs';
-import { VideosService } from 'src/app/core/services/videos.service';
+import { Store } from '@ngrx/store';
+import { debounceTime, filter, startWith, Subscription, tap } from 'rxjs';
+import { getVideos } from 'src/app/youtube/store/actions';
 
 @Component({
   selector: 'app-search-form',
@@ -10,10 +11,9 @@ import { VideosService } from 'src/app/core/services/videos.service';
 })
 export class SearchFormComponent implements OnInit, OnDestroy {
   public searchForm!: FormGroup<{ search: FormControl<string | null> }>;
-
   private subs = new Subscription();
 
-  constructor(private videosService: VideosService) {}
+  constructor(private store: Store) {}
 
   public get searchControl(): FormControl<string | null> {
     return this.searchForm.controls.search;
@@ -29,7 +29,7 @@ export class SearchFormComponent implements OnInit, OnDestroy {
           startWith(''),
           debounceTime(800),
           filter((search: string | null) => (search ? search.length > 3 : search === '')),
-          switchMap(() => this.videosService.getVideos(this.searchControl.value ?? '')),
+          tap(() => this.store.dispatch(getVideos({ search: this.searchControl.value ?? '' }))),
         )
         .subscribe(),
     );

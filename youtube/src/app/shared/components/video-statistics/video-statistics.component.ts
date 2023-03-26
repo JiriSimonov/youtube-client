@@ -16,7 +16,6 @@ export class VideoStatisticsComponent implements OnInit {
   @Input('app-video-statistics') public statistics!: Statistics;
 
   public stats: StatisticsItemModel[] = [];
-
   private icons = ['visibility', 'thumb_up'];
 
   public ngOnInit(): void {

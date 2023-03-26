@@ -26,7 +26,7 @@
     display: grid;
     grid-template-rows: 60px;
     row-gap: 30px;
-    padding: 20px;
+    padding: 20px 20px 0 20px;
 
     &_settings {
       grid-template-rows: repeat(2, 40px);
@@ -36,6 +36,5 @@
   &__controls {
     grid-column: 2/3;
     display: flex;
-    justify-content: space-between;
   }
 }

@@ -13,9 +13,7 @@ export class VideoComponent implements OnInit {
   @Input() public video!: SearchItem;
 
   public snippet!: Snippet;
-
   public maxres!: Thumbnail;
-
   public statistics!: Statistics;
 
   public ngOnInit(): void {

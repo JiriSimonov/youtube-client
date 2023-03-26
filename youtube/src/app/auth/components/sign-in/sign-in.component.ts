@@ -3,6 +3,8 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { isValidPassword } from 'src/app/shared/validators/password.validator';
 import { AuthService } from '../../services/auth.service';
 
+const DEFAULT_USERNAME = 'Your Name';
+
 @Component({
   selector: 'app-sign-in',
   templateUrl: './sign-in.component.html',
@@ -33,7 +35,7 @@ export class SignInComponent implements OnInit {
   }
 
   public get login(): string {
-    return this.signInForm.controls.login.value ?? 'Your Name';
+    return this.signInForm.controls.login.value ?? DEFAULT_USERNAME;
   }
 
   public onSubmit(username: string): void {
